@@ -34,9 +34,9 @@ A responsive and beginner-friendly calculator built using **HTML, CSS, and JavaS
 
 ## 📸 Screenshot
 
-![Calculator Preview](<img width="1920" height="903" alt="calculator" src="https://github.com/user-attachments/assets/1144c63b-f378-4c15-aea9-e2ab7814a158" />
+<img width="1920" height="903" alt="calculator" src="https://github.com/user-attachments/assets/1144c63b-f378-4c15-aea9-e2ab7814a158" />
 
-)  
+
 
 ---
 
