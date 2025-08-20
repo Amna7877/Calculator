@@ -1,240 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Modern Calculator</title>
-  <meta name="description" content="A modern-looking calculator built with HTML, CSS, and basic JavaScript without using eval. Mobile responsive and beginner-friendly.">
-  <style>
-:root {
-  --bg-color: #cbbfbf;
-  --display-bg: #cbcbcb;
-  --display-text: rgb(0, 163, 0);
-  --btn-bg: #676363;
-  --btn-text: #fff;
-  --btn-hover: #575252;
-  --operator-bg: #ff9500;
-  --operator-hover: #da8311;
-  --equal-bg: #007aff;
-  --equal-hover: #0d6ac1;
-  --clear-bg: #d32f2f;
-  --clear-hover: #bc1818;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern looking calculator build with HTML, CSS and baisc JavaScript">
+    <title> Modern Calculator</title>
+    <style>
+        :root {
+        --bg-color:#cbbfbf;
+        --display-bg: #cbcbcb;
+        --display-text:rgb(0, 163, 0);
+        --btn-bg: #676363;
+        --btn-text: #fff;
+        --btn-hover: #575252;
+        --operator-bg:#ff9500;
+        --operator-hover: #da8311;
+        --equal-bg:#007aff;
+        --equal-hover: #0d6ac1;
+        --clear-bg: #d32f2f;
+        --clear-hover: #bc1818;
+        }
 
-* {
-  box-sizing: border-box;
-}
+        * {
+        box-sizing: border-box;
+        }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color);
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+        body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color); 
+        font-family:'Segoe UI' sans-serif ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        }
 
+        .calculator {
+        background-color: #111;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        width: 90%;
+        max-width: 340px;
+        }
 
-.calculator {
-  background-color: #111;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  width: 90%;
-  max-width: 340px;
-}
+        .display {
+        width: 100%;
+        height: 60px;
+        background-color: var(--display-bg);
+        color: var(--display-text);
+        font-size: 2rem;
+        text-align: right;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        }
 
-.display {
-  width: 100%;
-  height: 60px;
-  background-color: var(--display-bg);
-  color: var(--display-text);
-  font-size: 2rem;
-  text-align: right;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
+        .display::placeholder {
+        color: #555;
+        }
 
-.display::placeholder {
-  color: #555;
-}
+        .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        }
 
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
+        button {
+        padding: 18px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background-color: var(--btn-bg);
+        color: var(--btn-text);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        }
 
-button {
-  padding: 18px;
-  font-size: 18px;
-  border: none;
-  border-radius: 10px;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+        button:hover {
+        background-color: var(--btn-hover);
+        transform: scale(0.95);
+        }
 
-button:hover {
-  background-color: var(--btn-hover);
-  transform: scale(1.05);
-}
+        button:active {
+        transform: scale(0.98);
+        box-shadow: inset 0 7px 9px rgba(0,0,0,0.3);
+        }
 
-button:active {
-  transform: scale(0.95);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.3);
-}
+        .operator {
+        background-color: var(--operator-bg);
+        color: #fff;
+        }
 
-.operator {
-  background-color: var(--operator-bg);
-  color: #fff;
-}
+        .operator:hover {
+        background-color: var(--operator-hover);
+        }
 
-.operator:hover {
-  background-color: var(--operator-hover);
-}
+        .equal {
+        background-color: var(--equal-bg); 
+        color: #fff;   
+        grid-column: span 2;
+        }
 
-.equal {
-  background-color: var(--equal-bg);
-  color: #fff;
-  grid-column: span 2;
-}
+        .equal:hover {
+        background-color: var(--equal-hover);
+        }
 
-.equal:hover {
-  background-color: var(--equal-hover);
-}
+        .clear {
+        background-color: var(--clear-bg);
+        color: #fff;
+        }
 
-.clear {
-  background-color: var(--clear-bg);
-  color: #fff;
-}
+        .clear:hover {
+        background-color: var(--clear-hover);
+        }
 
-.clear:hover {
-  background-color: var(--clear-hover);
-}
-
-@media (max-width: 400px) {
-  .display {
-    font-size: 1.6rem;
-  }
-  button {
-    padding: 14px;
-    font-size: 16px;
-  }
-}
-
-  </style>
+        @media (max-width: 400px) {
+        .display {
+        font-size: 1.6rem;
+        }
+        button {
+        padding: 14px;
+        font-size: 16px;
+        }
+        }
+    </style>
 </head>
 <body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" disabled placeholder="0">
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="clear">C</button>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
 
- 
-  <div class="calculator">
-    <input type="text" class="display" id="display" disabled placeholder="0">
-    <div class="buttons">
-      <button onclick="clearDisplay()" class="clear">C</button>
-      <button onclick="appendNumber('7')">7</button>
-      <button onclick="appendNumber('8')">8</button>
-      <button onclick="appendNumber('9')">9</button>
+            <button onclick="setOperator('+')" class="operator">+</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
 
-      <button onclick="setOperator('+')" class="operator">+</button>
-      <button onclick="appendNumber('4')">4</button>
-      <button onclick="appendNumber('5')">5</button>
-      <button onclick="appendNumber('6')">6</button>
+            <button onclick="setOperator('-')" class="operator">-</button>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
 
-      <button onclick="setOperator('-')" class="operator">−</button>
-      <button onclick="appendNumber('1')">1</button>
-      <button onclick="appendNumber('2')">2</button>
-      <button onclick="appendNumber('3')">3</button>
+            <button onclick="setOperator('*')" class="operator">×</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="appendDecimal('')">.</button>
+            <button onclick="setOperator('/')">÷</button>
 
-      <button onclick="setOperator('*')" class="operator">×</button>
-      <button onclick="appendNumber('0')">0</button>
-      <button onclick="appendDecimal()">.</button>
-      <button onclick="setOperator('/')" class="operator">÷</button>
-
-      <button onclick="calculate()" class="equal">=</button>
+            <button onclick="calculate()" class="equal">=</button>
+        </div>
     </div>
-  </div>
 
-  <script>
-    var display = document.getElementById("display");
-    var firstNumber = "";
-    var secondNumber = "";
-    var operator = "";
-    var isSecond = false;
+    <script>
+        var display = document.getElementById("display");
+        var firstNumber = "";
+        var secondNumber = "";
+        var operator = "";
+        var isSecond = false;
 
-    function appendNumber(num) {
-      if (!isSecond) {
-        firstNumber += num;
-        display.value = firstNumber;
-      } else {
-        secondNumber += num;
-        display.value = secondNumber;
-      }
-    }
-
-    function appendDecimal() {
-      if (!isSecond && !firstNumber.includes(".")) {
-        firstNumber += ".";
-        display.value = firstNumber;
-      } else if (isSecond && !secondNumber.includes(".")) {
-        secondNumber += ".";
-        display.value = secondNumber;
-      }
-    }
-
-    function setOperator(op) {
-      if (firstNumber === "") return;
-      operator = op;
-      isSecond = true;
-    }
-
-    function clearDisplay() {
-      firstNumber = "";
-      secondNumber = "";
-      operator = "";
-      isSecond = false;
-      display.value = "";
-    }
-
-    function calculate() {
-      var num1 = parseFloat(firstNumber);
-      var num2 = parseFloat(secondNumber);
-      var result = 0;
-
-      if (isNaN(num1) || isNaN(num2)) {
-        display.value = "Error";
-        return;
-      }
-
-      if (operator === "+") {
-        result = num1 + num2;
-      } else if (operator === "-") {
-        result = num1 - num2;
-      } else if (operator === "*") {
-        result = num1 * num2;
-      } else if (operator === "/") {
-        if (num2 === 0) {
-          display.value = "Error";
-          return;
+        function appendNumber(num) {
+            if (!isSecond) {
+                firstNumber += num;
+                display.value = firstNumber;
+            } else {
+                secondNumber += num;
+                display.value = secondNumber;
+            }
         }
-        result = num1 / num2;
-      } else {
-        display.value = "Error";
-        return;
-      }
 
-      display.value = result;
-      firstNumber = result.toString();
-      secondNumber = "";
-      operator = "";
-      isSecond = false;
-    }
-  </script>
+        function appendDecimal() {
+            if (!isSecond && !firstNumber.includes(".")) {
+                firstNumber += ".";
+                display.value = firstNumber;
+            } else if (isSecond && !secondNumber.includes(".")) {
+                secondNumber += ".";
+                display.value = secondNumber;
+            }
+        }
 
+        function setOperator(op) {
+           if (firstNumber === "") return;
+           operator = op;
+           isSecond = true;
+        }
+
+        function clearDisplay() {
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+            isSecond = false;
+            display.value = "";
+        }
+
+        function calculate() {
+            var num1 = parseFloat(firstNumber);
+            var num2 = parseFloat(secondNumber);
+            var result = 0;
+
+            // Error check
+            if (isNaN(num1) || isNaN(num2)) {
+                display.value = "Error";
+                return;
+            }
+
+            if (operator === "+") {
+                result = num1 + num2;
+            }  else if (operator === "-") {
+                result = num1 - num2;
+            }  else if (operator ==="*") {
+                result = num1 * num2;
+            }  else if (operator === "/") {
+                if (num2 === 0) {
+                    display.value = "Error";
+                    return;
+                }
+                result = num1 / num2;
+            }  else {
+                display.value = "Error";
+                return;
+            }
+
+            display.value = result;
+            firstNumber = result.toString();
+            secondNumber = "";
+            operator = "";
+            isSecond = false;
+        }
+    </script>
 </body>
 </html>
