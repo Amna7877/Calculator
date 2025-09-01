@@ -1,6 +1,6 @@
 # 🧮 Modern Calculator
 
-A responsive and beginner-friendly calculator built using **HTML, CSS, and JavaScript** — with a clean design and no use of `eval()`.
+A responsive and beginner-friendly calculator built using **HTML, CSS, and JavaScript** — with a clean design.
 
 ---
 
@@ -9,7 +9,7 @@ A responsive and beginner-friendly calculator built using **HTML, CSS, and JavaS
 - Fully mobile responsive
 - Simple, modern UI
 - Basic arithmetic operations: `+`, `−`, `×`, `÷`
-- No `eval()` — safe and beginner-friendly logic
+- Safe and beginner-friendly logic
 - Clean hover and click animations
 - Styled like a real physical calculator
 
